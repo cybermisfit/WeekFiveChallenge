@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sterling Solutions</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #eeeeee;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Week Five Challenge: Employees and Departments</h2>
+        <h3>STERLING SOLUTIONS - Employees by Department</h3>
+        <br/>
+
+        <form action="/search" method="post">
+            Last Name: <input type="text" name="lastname">
+            <input type="submit" value="Submit">
+        </form>
+
+        <form action="/search2" method="post">
+            Department: <input type="text" name="department">
+            <input type="submit" value="Submit">
+        </form>
+        <br/>
+        <div th:replace="base :: nav"></div>
+
+
+
+        <table>
+            <tr>
+
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>DEPARTMENT</th>
+
+            </tr>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.firstname}"></td>
+                <td th:text="${employee.lastname}"></td>
+                <td th:text="${employee.department}"></td>
+
+
+
+                <td>
+                    <a th:href="@{/detail/{id}(id=${employee.id})}">Details</a>
+                </td>
+            </tr>
+        </table>
+        <form action="/">
+            <input type="submit" value="Show All">
+        </form>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/
+jquery.min.js"></script>
+
+</body>
+</html>
